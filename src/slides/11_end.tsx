@@ -1,4 +1,4 @@
-import { Box, GlobalStyles, Typography } from "@mui/material";
+import { Box, GlobalStyles, Link, Typography } from "@mui/material";
 import { useEffect } from "react";
 
 export default function Slide() {
@@ -41,11 +41,17 @@ export default function Slide() {
               "radial-gradient(circle at 60% 65%, var(--c) 64%,#0000 65%) top left/50% 50%, radial-gradient(circle at 40% 65%, var(--c) 64%,#0000 65%) top right/50% 50%, conic-gradient(from -45deg at 50% 85.5%, var(--c) 90deg,#0000 0) bottom/100% 50%",
             backgroundRepeat: "no-repeat",
             display: "flex",
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
             pt: "10rem",
           }}
         >
           <Typography variant="h2">Thank you!</Typography>
+          <Typography>
+            <Link color="inherit" href="https://jardas.de/future-styled">
+              https://jardas.de/future-styled
+            </Link>
+          </Typography>
         </Box>
       </Box>
     </Box>
