@@ -16,8 +16,9 @@ export default function Slide() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          gap: 2,
+          gap: 4,
+          alignItems: "center",
+          maxWidth: "80rem",
         }}
       >
         <Typography
@@ -40,8 +41,9 @@ export default function Slide() {
           viverra a mauris. Aenean nulla dui, efficitur vitae sagittis tempus,
           hendrerit sed est.
         </Typography>
-        <Code language="css">
-          {`
+        <Box>
+          <Code language="css">
+            {`
 ::first-letter {
   background: purple;
   float: left;
@@ -50,7 +52,8 @@ export default function Slide() {
   margin-right: 1rem;
 }
 `.trim()}
-        </Code>
+          </Code>
+        </Box>
       </Box>
     </Box>
   );

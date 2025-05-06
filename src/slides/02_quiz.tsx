@@ -16,16 +16,60 @@ const questions: ReadonlyArray<Question> = [
   {
     scenario: (
       <>
-        <div id="first">&lt;div id="first"&gt;</div>
-        <div id="second">&lt;div id="second"&gt;</div>
+        <div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+        </div>
+        <div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <Box className="X" sx={{ color: "error.light" }}>
+            &lt;div class="X"&gt;
+          </Box>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+        </div>
       </>
     ),
     question: {
-      "div#first": {
+      "div.a:nth-child(2n+1)": {
         background: "purple",
       },
     },
-    solution: 'The div element with the ID "first"',
+    solution:
+      "Match elements based on the index in the child list of their parents.",
+  },
+  {
+    scenario: (
+      <>
+        <div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+        </div>
+        <div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <Box className="X" sx={{ color: "error.light" }}>
+            &lt;div class="X"&gt;
+          </Box>
+          <div className="a">&lt;div class="a"&gt;</div>
+          <div className="a">&lt;div class="a"&gt;</div>
+        </div>
+      </>
+    ),
+    question: {
+      "div:nth-child(2n+1 of div.a)": {
+        background: "purple",
+      },
+    },
+    solution:
+      "Match elements based on the index in the child list of their parents.",
   },
   {
     scenario: (
@@ -69,11 +113,11 @@ const questions: ReadonlyArray<Question> = [
   },
   {
     scenario: (
-      <>
+      <div>
         <div lang="en-US">&lt;div lang="en-US"&gt;</div>
         <div lang="en-GB">&lt;div lang="en-GB"&gt;</div>
         <div lang="de-DE">&lt;div lang="de-DE"&gt;</div>
-      </>
+      </div>
     ),
     question: {
       "div[lang|=en]": {
@@ -85,12 +129,12 @@ const questions: ReadonlyArray<Question> = [
   },
   {
     scenario: (
-      <>
+      <div>
         <div lang="de-DE">&lt;div lang="de-DE"&gt;</div>
         <div lang="de-CH">&lt;div lang="de-CH"&gt;</div>
         <div lang="fr-DE">&lt;div lang="fr-DE"&gt;</div>
         <div lang="fr-CH">&lt;div lang="fr-CH"&gt;</div>
-      </>
+      </div>
     ),
     question: {
       "div[lang$=CH]": {
@@ -139,24 +183,25 @@ export default function Slide({ nextSlide }: SlideProps) {
           <Typography variant="h2" sx={textGradient("primary")}>
             Selectors
           </Typography>
-          <CSS sx={question.question} />
-          <Box
-            sx={[
-              (theme) => ({
-                display: "flex",
-                gap: 2,
-                ...theme.typography.body2,
-                "& p": { margin: 0 },
-                "& > div": {
-                  backgroundColor: "var(--mui-palette-background-paper)",
-                  backgroundImage: "var(--mui-overlays-5)",
-                  padding: 2,
+          <Box sx={{ display: "flex", gap: 8 }}>
+            <CSS sx={question.question} />
+            <Box
+              sx={[
+                {
+                  display: "flex",
+                  gap: 2,
+                  "& p": { margin: 0 },
+                  "& > div": {
+                    backgroundColor: "var(--mui-palette-background-paper)",
+                    backgroundImage: "var(--mui-overlays-5)",
+                    padding: 2,
+                  },
                 },
-              }),
-              showSolution ? question.question : {},
-            ]}
-          >
-            {question.scenario}
+                showSolution && question.question,
+              ]}
+            >
+              {question.scenario}
+            </Box>
           </Box>
           <Alert
             severity="success"

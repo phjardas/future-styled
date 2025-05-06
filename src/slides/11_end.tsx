@@ -48,8 +48,16 @@ export default function Slide() {
         >
           <Typography variant="h2">Thank you!</Typography>
           <Typography>
+            <Link
+              color="inherit"
+              href="https://github.com/phjardas/future-styled"
+            >
+              github.com/phjardas/future-styled
+            </Link>
+          </Typography>
+          <Typography>
             <Link color="inherit" href="https://jardas.de/future-styled">
-              https://jardas.de/future-styled
+              jardas.de/future-styled
             </Link>
           </Typography>
         </Box>
